@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import Username from "./components/User"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,7 +43,7 @@ function NavBar() {
         <Typography variant="h6" className={classes.title}>
           NWS
         </Typography>
-        {isAuthenticated ? "Gontrand" : <Button color="inherit">Login</Button>}
+        {isAuthenticated ? <Username />  : <Button color="inherit">Login</Button>}
       </Toolbar>
     </AppBar>
   );
