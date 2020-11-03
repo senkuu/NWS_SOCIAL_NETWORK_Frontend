@@ -8,7 +8,9 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import Username from "./components/User"
+import Username from "./components/User";
+import {Link} from "react-router-dom";
+import { inherits } from "util";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,6 +23,10 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
     },
+    btnNavbar: {
+      textDecoration: 'none',
+      color: 'inherit'
+    }
   })
 );
 
@@ -43,8 +49,14 @@ function NavBar() {
         <Typography variant="h6" className={classes.title}>
           NWS
         </Typography>
-        {isAuthenticated ? <Username />  : <Button color="inherit">Login</Button>}
+
+        <Link to="/listeDesGuildes" className={classes.btnNavbar}>
+          <Button color="inherit"> Les Guildes</Button>
+        </Link>
+          {isAuthenticated ? <Username />  : <Button color="inherit">Login</Button>}  
+        
       </Toolbar>
+      
     </AppBar>
   );
 }
