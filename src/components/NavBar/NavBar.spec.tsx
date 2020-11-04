@@ -1,6 +1,6 @@
 import React from "react";
 import userEvent from "@testing-library/user-event";
-import { render, screen, cleanup } from "@testing-library/react";
+import { render, cleanup } from "@testing-library/react";
 
 import NavBar from "./NavBar";
 import { UserContextProvider } from "services/contexts/UserContext";
