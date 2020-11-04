@@ -27,17 +27,20 @@ const useStyles = makeStyles(() =>
 function NavBar() {
   const classes = useStyles();
 
-  const { user } = useContext(UserContext);
+  const { user, disconnectUser, authenticateUser } = useContext(UserContext);
 
   // if user is log, return this
   if (user) {
     return (
-      <AppBar position="static" className={classes.root}>
+      <AppBar position="static" className={classes.root} data-testid="navbar">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             NWS
           </Typography>
-          <UserProfile username={user.username} />
+          <UserProfile
+            username={user.username}
+            disconnectUser={disconnectUser}
+          />
         </Toolbar>
       </AppBar>
     );
@@ -45,12 +48,18 @@ function NavBar() {
 
   // if user isn't log, return this
   return (
-    <AppBar position="static">
+    <AppBar position="static" data-testid="navbar">
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
           NWS
         </Typography>
-        <Button color="inherit">Login</Button>
+        <Button
+          color="inherit"
+          onClick={() => authenticateUser({ id: 42, username: "John Doe" })}
+          data-testid="login-button"
+        >
+          Login
+        </Button>
       </Toolbar>
     </AppBar>
   );

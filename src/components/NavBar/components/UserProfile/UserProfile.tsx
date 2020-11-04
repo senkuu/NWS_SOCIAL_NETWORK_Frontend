@@ -13,6 +13,7 @@ import { UserContext } from "services/contexts/UserContext";
 
 interface IUserProfileProps {
   username: string;
+  disconnectUser: () => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -40,8 +41,6 @@ function UserProfile(props: IUserProfileProps) {
     setMenuAnchorElement,
   ] = useState<null | HTMLElement>(null);
 
-  const { disconnectUser } = useContext(UserContext);
-
   const handleProfileClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setMenuAnchorElement(e.currentTarget);
   };
@@ -57,6 +56,7 @@ function UserProfile(props: IUserProfileProps) {
         onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
           handleProfileClick(e)
         }
+        data-testid="userprofile-button"
       >
         <Typography className={classes.typo}>{props.username}</Typography>
         <Avatar>MD</Avatar>
@@ -69,7 +69,12 @@ function UserProfile(props: IUserProfileProps) {
       >
         <MenuItem>Profile</MenuItem>
         <MenuItem>My account</MenuItem>
-        <MenuItem onClick={disconnectUser}>Logout</MenuItem>
+        <MenuItem
+          onClick={props.disconnectUser}
+          data-testid="userprofile-logout-button"
+        >
+          Logout
+        </MenuItem>
       </Menu>
     </React.Fragment>
   );
