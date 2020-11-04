@@ -32,17 +32,28 @@ function NavBar() {
 
   const { user } = useContext(UserContext);
 
+  // if user is log, return this
+  if (user) {
+    return (
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+            NWS
+          </Typography>
+          <UserProfile username={user.username} />
+        </Toolbar>
+      </AppBar>
+    );
+  }
+
+  // if user isn't log, return this
   return (
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
           NWS
         </Typography>
-        {user ? (
-          <UserProfile username={user.username} />
-        ) : (
-          <Button color="inherit">Login</Button>
-        )}
+        <Button color="inherit">Login</Button>
       </Toolbar>
     </AppBar>
   );

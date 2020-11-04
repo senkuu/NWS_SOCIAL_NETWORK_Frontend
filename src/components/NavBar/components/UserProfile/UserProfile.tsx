@@ -36,6 +36,7 @@ function UserProfile(props: IUserProfileProps) {
   return (
     <Box className={classes.root}>
       <Typography className={classes.typo}>{props.username}</Typography>
+      {/* TODO : FAIRE UN VRAI BOUTON DECONNEXION */}
       <Avatar onClick={disconnectUser}>MD</Avatar>
     </Box>
   );
