@@ -1,7 +1,7 @@
 import React from "react";
 
-// import pages
-import Home from "./pages/Home";
+// import router
+import Router from "./Router";
 
 // import Provider
 import { UserContextProvider } from "services/contexts/UserContext";
@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <UserContextProvider>
-        <Home />
+        <Router />
       </UserContextProvider>
     </div>
   );
