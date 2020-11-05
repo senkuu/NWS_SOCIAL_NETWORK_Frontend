@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 // import material-ui components
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
@@ -7,9 +7,6 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-
-// import contexts
-import { UserContext } from "services/contexts/UserContext";
 
 interface IUserProfileProps {
   username: string;
