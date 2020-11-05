@@ -1,6 +1,5 @@
 import React from "react";
-import userEvent from "@testing-library/user-event";
-import { render, cleanup } from "@testing-library/react";
+import { render, cleanup, fireEvent } from "@testing-library/react";
 
 import NavBar from "./NavBar";
 import { UserContextProvider } from "services/contexts/UserContext";
@@ -18,15 +17,15 @@ it("should renders component", () => {
 
 it("should login user when login button is clicked and render UserProfile", () => {
   const { getByTestId } = renderWithContext(<NavBar />);
-  userEvent.click(getByTestId("login-button"));
+  fireEvent.click(getByTestId("login-button"));
   expect(getByTestId("userprofile-button")).toBeInTheDocument();
 });
 
 it("should no longer render UserProfile when user is login and logout button is clicked", () => {
   const { getByTestId } = renderWithContext(<NavBar />);
-  userEvent.click(getByTestId("login-button"));
-  userEvent.click(getByTestId("userprofile-button"));
-  userEvent.click(getByTestId("userprofile-logout-button"));
+  fireEvent.click(getByTestId("login-button"));
+  fireEvent.click(getByTestId("userprofile-button"));
+  fireEvent.click(getByTestId("userprofile-logout-button"));
   expect(() => getByTestId("userprofile-button")).toThrow();
 });
 

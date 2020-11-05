@@ -5,17 +5,15 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
-    "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.1",
-    "@testing-library/user-event": "^12.2.0",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^14.14.6",
+    "@types/react": "^16.9.55",
+    "@types/react-dom": "^16.9.9",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-scripts": "3.4.3",
-    "typescript": "~3.7.2"
+    "typescript": "^4.0.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,6 +37,10 @@
     ]
   },
   "devDependencies": {
-    "@types/material-ui": "^0.21.8"
+    "@testing-library/jest-dom": "^5.11.5",
+    "@types/material-ui": "^0.21.8",
+    "@types/testing-library__jest-dom": "^5.9.5",
+    "@types/testing-library__react": "^10.2.0",
+    "ts-jest": "^26.4.3"
   }
 }
