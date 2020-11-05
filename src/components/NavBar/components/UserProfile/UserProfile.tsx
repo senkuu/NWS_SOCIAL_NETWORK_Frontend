@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { Link, useHistory } from "react-router-dom";
+
 // import material-ui components
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -7,8 +9,6 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-
-import { Link } from "react-router-dom";
 
 interface IUserProfileProps {
   username: string;
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function UserProfile(props: IUserProfileProps) {
   const classes = useStyles();
+  const history = useHistory();
 
   const [
     menuAnchorElement,
@@ -46,6 +47,10 @@ function UserProfile(props: IUserProfileProps) {
 
   const handleMenuClose = () => {
     setMenuAnchorElement(null);
+  };
+
+  const handleGoToProfileClick = () => {
+    history.push("/profile");
   };
 
   return (
@@ -66,9 +71,7 @@ function UserProfile(props: IUserProfileProps) {
         open={Boolean(menuAnchorElement)}
         onClose={handleMenuClose}
       >
-        <Link to="/profile">
-          <MenuItem>Profile</MenuItem>
-        </Link>
+        <MenuItem onClick={handleGoToProfileClick}>Profile</MenuItem>
         <MenuItem
           onClick={props.disconnectUser}
           data-testid="userprofile-logout-button"

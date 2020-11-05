@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 
+import { Link } from "react-router-dom";
+
 // import material-ui components
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -21,6 +23,10 @@ const useStyles = makeStyles(() =>
     title: {
       flexGrow: 1,
     },
+    link: {
+      color: "#f1f1f1",
+      textDecoration: "none",
+    },
   })
 );
 
@@ -35,7 +41,9 @@ function NavBar() {
       <AppBar position="static" className={classes.root} data-testid="navbar">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            NWS
+            <Link to="/" className={classes.link}>
+              NWS
+            </Link>
           </Typography>
           <UserProfile
             username={user.username}
@@ -51,7 +59,9 @@ function NavBar() {
     <AppBar position="static" data-testid="navbar">
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
-          NWS
+          <Link to="/" className={classes.link}>
+            NWS
+          </Link>
         </Typography>
         <Button
           color="inherit"
