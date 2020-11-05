@@ -8,6 +8,8 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
+import { Link } from "react-router-dom";
+
 interface IUserProfileProps {
   username: string;
   disconnectUser: () => void;
@@ -64,8 +66,9 @@ function UserProfile(props: IUserProfileProps) {
         open={Boolean(menuAnchorElement)}
         onClose={handleMenuClose}
       >
-        <MenuItem>Profile</MenuItem>
-        <MenuItem>My account</MenuItem>
+        <Link to="/profile">
+          <MenuItem>Profile</MenuItem>
+        </Link>
         <MenuItem
           onClick={props.disconnectUser}
           data-testid="userprofile-logout-button"

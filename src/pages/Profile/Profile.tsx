@@ -1,9 +1,11 @@
 import React from "react";
 
+import NavBar from "components/NavBar";
+
 function Profile() {
   return (
     <React.Fragment>
-      <h1>Profile</h1>
+      <NavBar />
     </React.Fragment>
   );
 }
