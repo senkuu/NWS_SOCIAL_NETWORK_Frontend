@@ -1,5 +1,6 @@
 import Guilds from "components/Guilds/Guilds";
 import Guild from "components/Guilds/Guilds";
+import UserGuilds from "components/UserGuilds/UserGuilds";
 import React from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 // import pages
@@ -13,6 +14,7 @@ function App() {
         <Home />
         <Route path="/listeDesGuildes" exact component={listGuilds}/>
         <Route path="/guild/:id" exact component={Guilds}/>
+        <Route path="/user/:id/guilds/" exact component={UserGuilds}/>
       </Router>
     </div>
   );

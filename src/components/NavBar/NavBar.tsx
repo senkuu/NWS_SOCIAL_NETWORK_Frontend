@@ -53,6 +53,9 @@ function NavBar() {
         <Link to="/listeDesGuildes" className={classes.btnNavbar}>
           <Button color="inherit"> Les Guildes</Button>
         </Link>
+        <Link to="/User/1/guilds" className={classes.btnNavbar}>
+          <Button color="inherit"> Les Guildes de l'utilisateur</Button>
+        </Link>
           {isAuthenticated ? <Username />  : <Button color="inherit">Login</Button>}  
         
       </Toolbar>

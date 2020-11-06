@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Guilds(){
    
-  let { id } = useParams();
+  let { id } : any = useParams();
   const [guild, setGuild] = useState<Guild>();
   const classes = useStyles();
   useEffect(() => {
