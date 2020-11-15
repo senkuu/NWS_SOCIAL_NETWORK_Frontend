@@ -5,6 +5,8 @@ import React from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 // import pages
 import listGuilds from "./components/ListGuilds/ListGuilds";
+import CreatePosts from "./components/Posts/CreatePosts";
+import UpdatePosts from "./components/Posts/UpdatePosts";
 import Home from "./pages/Home";
 
 function App() {
@@ -15,6 +17,8 @@ function App() {
         <Route path="/listeDesGuildes" exact component={listGuilds}/>
         <Route path="/guild/:id" exact component={Guilds}/>
         <Route path="/user/:id/guilds/" exact component={UserGuilds}/>
+        <Route path="/creerPoste" exact component={CreatePosts}/>
+        <Route path="/modifierPoste" exact component={UpdatePosts}/>
       </Router>
     </div>
   );
