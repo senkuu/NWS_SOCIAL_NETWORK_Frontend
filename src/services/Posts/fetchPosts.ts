@@ -1,4 +1,4 @@
-export default async function fetchUserGuilds(id: string) {
+export default async function fetchPosts(id: string) {
     const response = await fetch("https://localhost:5001/api/posts/"+ id);
     const responseJson = await response.json();
   
