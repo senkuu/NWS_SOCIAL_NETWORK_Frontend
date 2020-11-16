@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import { Link } from "react-router-dom";
 
@@ -13,7 +13,7 @@ import Button from "@material-ui/core/Button";
 import UserProfile from "./components/UserProfile";
 
 // import contexts
-import { UserContext } from "services/contexts/UserContext";
+import { useUser } from "services/contexts/UserContext";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -33,7 +33,7 @@ const useStyles = makeStyles(() =>
 function NavBar() {
   const classes = useStyles();
 
-  const { user, disconnectUser, authenticateUser } = useContext(UserContext);
+  const { user, disconnectUser, authenticateUser } = useUser();
 
   // if user is log, return this
   if (user) {

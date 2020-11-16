@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 // import types
 import { User } from "types/user";
@@ -23,14 +23,26 @@ export function UserContextProvider(props: IUserContextProps) {
   };
 
   const authenticateUser = (userInfo: User) => {
+    fetch("https://localhost:5001/account/google-login")
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (myJson) {
+        console.log(JSON.stringify(myJson));
+      });
     setUser({
       ...userInfo,
     });
   };
 
+  const value = { user, disconnectUser, authenticateUser };
+
   return (
-    <UserContext.Provider value={{ user, disconnectUser, authenticateUser }}>
-      {props.children}
-    </UserContext.Provider>
+    <UserContext.Provider value={value}>{props.children}</UserContext.Provider>
   );
+}
+
+export function useUser() {
+  const value = useContext(UserContext);
+  return value;
 }
