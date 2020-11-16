@@ -9,6 +9,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
+
 // import local components
 import UserProfile from "./components/UserProfile";
 
@@ -24,8 +25,9 @@ const useStyles = makeStyles(() =>
       flexGrow: 1,
     },
     link: {
-      color: "#f1f1f1",
+      color: "#FFFFFF",
       textDecoration: "none",
+      marginRight: '15px'
     },
   })
 );
@@ -45,6 +47,11 @@ function NavBar() {
               NWS
             </Link>
           </Typography>
+          <Typography variant="button">
+            <Link to="/Projet" className={classes.link}>
+                Projet
+            </Link>
+          </Typography>
           <UserProfile
             username={user.username}
             disconnectUser={disconnectUser}
@@ -62,6 +69,11 @@ function NavBar() {
           <Link to="/" className={classes.link}>
             NWS
           </Link>
+        </Typography>
+        <Typography variant="button">
+        <Link to="/Projet" className={classes.link}>
+            Projet
+        </Link>
         </Typography>
         <Button
           color="inherit"
