@@ -52,6 +52,12 @@ function NavBar() {
               NWS
             </Link>
           </Typography>
+          <Link to="/listeDesGuildes" className={classes.btnNavbar}>
+          <Button color="inherit"> Les Guildes</Button>
+        </Link>
+        <Link to={`/User/${user.id}/guilds`} className={classes.btnNavbar}>
+          <Button color="inherit"> Les Guildes de l'utilisateur</Button>
+        </Link>
           <Typography variant="button">
             <Link to="/Projet" className={classes.link}>
                 Projet
@@ -78,9 +84,6 @@ function NavBar() {
         <Link to="/listeDesGuildes" className={classes.btnNavbar}>
           <Button color="inherit"> Les Guildes</Button>
         </Link>
-        <Link to="/User/1/guilds" className={classes.btnNavbar}>
-          <Button color="inherit"> Les Guildes de l'utilisateur</Button>
-        </Link>
         <Typography variant="button">
         <Link to="/Projet" className={classes.link}>
             Projet
@@ -88,7 +91,7 @@ function NavBar() {
         </Typography>
         <Button
           color="inherit"
-          onClick={() => authenticateUser({ id: 42, username: "John Doe" })}
+          onClick={() => authenticateUser({ id: 1, username: "John Doe" })}
           data-testid="login-button"
         >
           Login

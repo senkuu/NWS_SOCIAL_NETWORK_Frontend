@@ -25,7 +25,7 @@ return(
         guildsList.map((guilds) => <div> <div>{guilds.id}</div><div>{guilds.name}</div></div>
        ) 
         ) : (   
-        <Typography>Chargement</Typography>
+        <Typography>Vous n'etes dans aucune guildes</Typography>
         )}
     </React.Fragment>
 );

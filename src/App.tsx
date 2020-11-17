@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 
 // import pages
 import listGuilds from "./components/ListGuilds/ListGuilds";
+import GuildIfMember from "./components/GuildIfMember/GuildIfMember";
 import CreatePosts from "./components/Posts/CreatePosts";
 import UpdatePosts from "./components/Posts/UpdatePosts";
 import Home from "./pages/Home";
@@ -19,12 +20,13 @@ function App() {
 
   <UserContextProvider>
       <Router>
-        <Home />
+        <Home/>
         <Route path="/listeDesGuildes" exact component={listGuilds}/>
         <Route path="/guild/:id" exact component={Guilds}/>
         <Route path="/user/:id/guilds/" exact component={UserGuilds}/>
         <Route path="/creerPoste" exact component={CreatePosts}/>
         <Route path="/modifierPoste" exact component={UpdatePosts}/>
+        <Route path="/guilds/isConnected/:id" exact component={GuildIfMember}/>
       </Router>
   </UserContextProvider>
     </div>
