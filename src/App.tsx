@@ -19,7 +19,7 @@ function App() {
 
   <UserContextProvider>
       <Router>
-        <Home />
+        <Route path="/" exact component={Home} />
         <Route path="/listeDesGuildes" exact component={listGuilds}/>
         <Route path="/guild/:id" exact component={Guilds}/>
         <Route path="/user/:id/guilds/" exact component={UserGuilds}/>
