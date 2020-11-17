@@ -18,7 +18,7 @@ import Box from '@material-ui/core/Box';
 
 // import contexts
 import { UserContext } from "services/contexts/UserContext";
-import { joinGuild } from "services/guilds/guilds.ts";
+import { joinGuild } from "services/guilds/guilds";
 import Button from "@material-ui/core/Button";
 
 interface TabPanelProps {
