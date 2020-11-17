@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import NavBar from "components/NavBar";
 import Typography from "@material-ui/core/Typography";
 
 import fetchGuilds from "services/guilds/fetchGuilds";
@@ -12,7 +13,8 @@ import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
 import {Link, LinkProps} from 'react-router-dom'
 import Button from "@material-ui/core/Button";
-import {joinGuild} from "services/guilds/guilds"
+import {joinGuild} from "services/guilds/guilds";
+
 
 
 // import contexts
@@ -48,6 +50,7 @@ function ListGuilds() {
   if (user) {
     return (
       <React.Fragment>
+        <NavBar />
         <Typography variant="h3" className={classes.title} >Liste des guildes</Typography>
         
         {guildsList.length > 0 ? (
@@ -76,6 +79,7 @@ function ListGuilds() {
 
   return(
     <React.Fragment>
+        <NavBar />
         <Typography variant="h3" className={classes.title} >Liste des guildes</Typography>
         
         {guildsList.length > 0 ? (
