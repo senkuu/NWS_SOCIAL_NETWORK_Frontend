@@ -8,10 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import Username from "./components/User/User";
 import {Link} from "react-router-dom";
-import { inherits } from "util";
-
-
 
 // import local components
 import UserProfile from "./components/UserProfile";
@@ -27,7 +25,6 @@ const useStyles = makeStyles(() =>
     title: {
       flexGrow: 1,
     },
-
     btnNavbar: {
       textDecoration: 'none',
       color: 'inherit'
@@ -96,6 +93,7 @@ function NavBar() {
         >
           Login
         </Button>
+
       </Toolbar>
       
     </AppBar>
