@@ -38,7 +38,6 @@ function CreatePosts() {
         <TextField
           id="outlined"
           label="Titre"
-          defaultValue="Titre du poste"
           variant="outlined"
           className={classes.titlePost}
         />
@@ -48,11 +47,18 @@ function CreatePosts() {
           label="Contenu"
           multiline
           rows={20}
-          defaultValue="Contenu du poste"
           variant="outlined"
           className={classes.content}
         />
         <br></br>
+        {/*à supprimer quand utilisauer accèsible */}
+        <TextField
+          id="outlined"
+          label="iduser"
+          defaultValue="1"
+          variant="outlined"
+          className={classes.titlePost}
+        />
         <Button variant="contained" color="primary" className={classes.bouton}>
           Publier
         </Button>
