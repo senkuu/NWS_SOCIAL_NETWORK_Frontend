@@ -8,14 +8,11 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-<<<<<<< HEAD
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import Username from "./components/User";
-import {Link} from "react-router-dom";
+import Username from "./components/User/User";
+//import { Link } from "react-router-dom";
 import { inherits } from "util";
-=======
->>>>>>> origin/team-enzo
 
 
 // import local components
@@ -32,18 +29,15 @@ const useStyles = makeStyles(() =>
     title: {
       flexGrow: 1,
     },
-<<<<<<< HEAD
     btnNavbar: {
       textDecoration: 'none',
       color: 'inherit'
-    }
-=======
+    },
     link: {
       color: "#FFFFFF",
       textDecoration: "none",
       marginRight: '15px'
     },
->>>>>>> origin/team-enzo
   })
 );
 
@@ -85,7 +79,6 @@ function NavBar() {
             NWS
           </Link>
         </Typography>
-<<<<<<< HEAD
 
         <Link to="/listeDesGuildes" className={classes.btnNavbar}>
           <Button color="inherit"> Les Guildes</Button>
@@ -93,22 +86,8 @@ function NavBar() {
         <Link to="/User/1/guilds" className={classes.btnNavbar}>
           <Button color="inherit"> Les Guildes de l'utilisateur</Button>
         </Link>
-          {isAuthenticated ? <Username />  : <Button color="inherit">Login</Button>}  
+            
         
-=======
-        <Typography variant="button">
-        <Link to="/Projet" className={classes.link}>
-            Projet
-        </Link>
-        </Typography>
-        <Button
-          color="inherit"
-          onClick={() => authenticateUser({ id: 42, username: "John Doe" })}
-          data-testid="login-button"
-        >
-          Login
-        </Button>
->>>>>>> origin/team-enzo
       </Toolbar>
       
     </AppBar>
