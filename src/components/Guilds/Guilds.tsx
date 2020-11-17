@@ -106,7 +106,6 @@ function Guilds(){
     if(status == "Admin"){
       return( 
         <React.Fragment>
-          <NavBar />
           {guild !== undefined ? (
           <div className={classes.tabs}>
               <AppBar position="static">
@@ -154,7 +153,6 @@ function Guilds(){
     if(status == "Membre"){
       return( 
         <React.Fragment>
-          <NavBar />
           {guild !== undefined ? (
           <div className={classes.tabs}>
               <AppBar position="static">
@@ -198,7 +196,6 @@ function Guilds(){
 
     return( 
     <React.Fragment>
-      <NavBar />
       {guild !== undefined ? (
          <Card className={`${classes.root} ${classes.card}`} key={guild.id}>
          <CardActionArea>
@@ -236,7 +233,6 @@ function Guilds(){
 
 return( 
   <React.Fragment>
-    <NavBar />
   {guild !== undefined ? (
   <Card className={`${classes.root} ${classes.card}`} key={guild.id}>
     <CardActionArea>

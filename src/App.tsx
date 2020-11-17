@@ -8,7 +8,8 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import listGuilds from "./components/ListGuilds/ListGuilds";
 import CreatePosts from "./components/Posts/CreatePosts";
 import UpdatePosts from "./components/Posts/UpdatePosts";
-import Home from "./pages/Home";
+import PostsDisplay from "./components/Posts/PostsDisplay";
+import Home from "./pages/Home/Home";
 
 // import Provider
 import { UserContextProvider } from "services/contexts/UserContext";
@@ -19,7 +20,8 @@ function App() {
 
   <UserContextProvider>
       <Router>
-        <Route path="/" exact component={Home} />
+        <Home />
+        <Route path="/" exact component={PostsDisplay} />
         <Route path="/listeDesGuildes" exact component={listGuilds}/>
         <Route path="/guild/:id" exact component={Guilds}/>
         <Route path="/user/:id/guilds/" exact component={UserGuilds}/>

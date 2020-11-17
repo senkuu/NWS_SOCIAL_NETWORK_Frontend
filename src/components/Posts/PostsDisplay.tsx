@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "components/NavBar";
 
 import fetchPosts from "services/Posts/fetchPosts";
 import { Posts } from "types/posts";
@@ -29,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
    })
 );
 
-function Home() {
+function PostsDisplay() {
     const [postsList, setPostsList] = useState<Posts[]>([]);
     const classes = useStyles();
     useEffect(() => {
@@ -40,10 +39,25 @@ function Home() {
 
   return (
     <React.Fragment>
-      <NavBar />
-      
+      <Typography variant="h1">Accueil</Typography>
+      {postsList.length > 0 ? (
+          postsList.map((posts) => <Typography key={posts.id}>
+          <List className={classes.root}>
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar>
+                  <ImageIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={posts.title} secondary={posts.text} />
+            </ListItem>
+          </List>
+        </Typography>)
+          ) : (
+            <Typography>Chargement</Typography>
+          )}
     </React.Fragment>
   );
 }
 
-export default Home;
+export default PostsDisplay;
