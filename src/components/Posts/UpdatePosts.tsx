@@ -37,18 +37,16 @@ function UpdatePosts() {
         
         <TextField
           id="outlined"
-          label="Titre"
-          defaultValue="Titre du poste"
+          label="Titre du Poste"
           variant="outlined"
           className={classes.titlePost}
         />
         <br></br>
         <TextField
           id="outlined-multiline-static"
-          label="Contenu"
+          label="Contenu du poste"
           multiline
           rows={20}
-          defaultValue="Contenu du poste"
           variant="outlined"
           className={classes.content}
         />
