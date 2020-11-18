@@ -27,12 +27,13 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+
+
 function CreatePosts() {
     const classes = useStyles();
-    state = {
-      title: "",
-      text: ""
-    }
+    const [title, setTitle] = useState("");
+    const [text, setText] = useState("");
+    
     
     return (
       <React.Fragment>
@@ -42,7 +43,7 @@ function CreatePosts() {
           id="outlined"
           label="Titre"
           variant="outlined"
-          value={this.state.title}
+          value={title}
           className={classes.titlePost}
         />
         <br></br>
@@ -52,10 +53,10 @@ function CreatePosts() {
           multiline
           rows={20}
           variant="outlined"
-          value={this.state.text}
+          value={text}
           className={classes.content}
         />
-        <Button variant="contained" color="primary" className={classes.bouton} onClick={() => newPosts()}>
+        <Button variant="contained" color="primary" className={classes.bouton} onClick={() => newPosts(title.setTitle(), text.setText(e.target.value))}>
           Publier
         </Button>
       </React.Fragment>
