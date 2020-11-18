@@ -53,6 +53,9 @@ function NavBar() {
             </Link>
           </Typography>
           <Typography variant="button">
+          <Link to="/Poster" className={classes.link}>
+                Poster
+            </Link>
             <Link to="/Projet" className={classes.link}>
                 Projet
             </Link>

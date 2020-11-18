@@ -25,7 +25,7 @@ function App() {
         <Route path="/listeDesGuildes" exact component={listGuilds}/>
         <Route path="/guild/:id" exact component={Guilds}/>
         <Route path="/user/:id/guilds/" exact component={UserGuilds}/>
-        <Route path="/creerPoste" exact component={CreatePosts}/>
+        <Route path="/Poster" exact component={CreatePosts}/>
         <Route path="/modifierPoste" exact component={UpdatePosts}/>
       </Router>
   </UserContextProvider>

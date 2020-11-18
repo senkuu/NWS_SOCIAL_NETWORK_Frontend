@@ -3,7 +3,9 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
+
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { newPosts } from "services/Posts/Posts";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,9 +29,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function CreatePosts() {
     const classes = useStyles();
-    useEffect(() => {
-      
-    }, []);
+    state = {
+      title: "",
+      text: ""
+    }
     
     return (
       <React.Fragment>
@@ -39,6 +42,7 @@ function CreatePosts() {
           id="outlined"
           label="Titre"
           variant="outlined"
+          value={this.state.title}
           className={classes.titlePost}
         />
         <br></br>
@@ -48,18 +52,10 @@ function CreatePosts() {
           multiline
           rows={20}
           variant="outlined"
+          value={this.state.text}
           className={classes.content}
         />
-        <br></br>
-        {/*à supprimer quand utilisauer accèsible */}
-        <TextField
-          id="outlined"
-          label="iduser"
-          defaultValue="1"
-          variant="outlined"
-          className={classes.titlePost}
-        />
-        <Button variant="contained" color="primary" className={classes.bouton}>
+        <Button variant="contained" color="primary" className={classes.bouton} onClick={() => newPosts()}>
           Publier
         </Button>
       </React.Fragment>
