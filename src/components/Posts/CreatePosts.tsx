@@ -31,34 +31,36 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function CreatePosts() {
     const classes = useStyles();
-    const [title, setTitle] = useState("");
-    const [text, setText] = useState("");
+    //const [title, setTitle] = useState("");
+    //const [text, setText] = useState("");
     
     
     return (
       <React.Fragment>
         <Typography variant="h3" className={classes.title} >Création d'un poste</Typography>
-        
-        <TextField
-          id="outlined"
-          label="Titre"
-          variant="outlined"
-          value={title}
-          className={classes.titlePost}
-        />
-        <br></br>
-        <TextField
-          id="outlined-multiline-static"
-          label="Contenu"
-          multiline
-          rows={20}
-          variant="outlined"
-          value={text}
-          className={classes.content}
-        />
-        <Button variant="contained" color="primary" className={classes.bouton} onClick={() => newPosts(title.setTitle(), text.setText(e.target.value))}>
-          Publier
-        </Button>
+        <form>
+          <TextField
+            //id="outlined"
+            label="Titre"
+            variant="outlined"
+            //value={title}
+            className={classes.titlePost}
+          />
+          <br></br>
+          <TextField
+            //id="outlined-multiline-static"
+            label="Contenu"
+            multiline
+            rows={20}
+            variant="outlined"
+            //value={text}
+            className={classes.content}
+          />
+          <br></br>
+          <Button variant="contained" color="primary" className={classes.bouton} /*onClick={() => newPosts(title.setTitle(), text.setText(e.target.value))}*/>
+           Publier
+          </Button>
+        </form>
       </React.Fragment>
     );
 }
