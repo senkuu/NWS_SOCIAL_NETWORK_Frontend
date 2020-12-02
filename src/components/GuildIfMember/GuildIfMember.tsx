@@ -92,7 +92,7 @@ function GuildIfMember() {
     setValue(newValue);
   };
   const  {user}  = useContext(UserContext);
-  console.log(user)
+ 
   let { id } : any = useParams();
   const [guild, setGuild] = useState<Guild>();
   const classes = useStyles();

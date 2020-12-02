@@ -3,10 +3,10 @@ export async function joinGuild(idGuild: string, idUser: string){
     const requestOptions = {
         method: 'POST',
         headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify({Userid: idUser, GuildId: idGuild})
+        body: JSON.stringify({Userid: idUser})
     };
 
-    const response = await fetch("https://localhost:5001"+idGuild + '/users', requestOptions);
+    const response = await fetch('https://localhost:5001/api/Guilds/'+idGuild + '/users', requestOptions);
     const data = await response.json();
 }
 

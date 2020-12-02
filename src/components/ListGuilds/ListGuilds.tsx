@@ -43,8 +43,7 @@ function ListGuilds() {
         .then((guilds) => setGuildsList(guilds))
         .catch((e) => console.error(e));
     }, []);
-    
-
+  
   if (user) {
     return (
       <React.Fragment>
