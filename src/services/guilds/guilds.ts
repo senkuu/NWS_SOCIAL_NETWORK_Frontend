@@ -14,3 +14,15 @@ export async function getStatusUser(idGuild: string, idUser: string){
     var status = "Admin";
     return status
 }
+
+export async function getUserGuildStatus(idGuild: string){
+
+    const requestOptions = {
+    method: 'GET',
+    headers: {'Content-Type' : 'application/json'},
+    };
+
+    const response = await fetch('https://localhost:5001/api/users/'+idGuild+'/guilds', requestOptions);
+    const data = await response.json();
+    console.log(data)
+}

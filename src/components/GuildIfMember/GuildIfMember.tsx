@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import { Redirect, useParams } from "react-router-dom";
 import fetchGuild from "services/guilds/fetchGuild";
 import { Guild } from "types/guilds";
+import { UserInGuild } from "types/UserInGuild";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -18,8 +19,9 @@ import Box from '@material-ui/core/Box';
 
 // import contexts
 import { UserContext } from "services/contexts/UserContext";
-import { getStatusUser, joinGuild } from "services/guilds/guilds";
+import { getUserGuildStatus, joinGuild } from "services/guilds/guilds";
 import { Button } from "@material-ui/core";
+
 
 
 
@@ -103,11 +105,21 @@ function GuildIfMember() {
       .catch((e) => console.error(e));
   }, []);
 
+  const [guildStatus, setGuildStatus] = useState<UserInGuild>();
+
+  useEffect(() => {
+    getUserGuildStatus(id)
+      .then((guildStatus : any) => setGuildStatus(guildStatus))
+      .catch((e) => console.error(e));
+  }, []);
+
+  var status = guildStatus?.userRole;
+
   if(!user){
     return( <Redirect to={`/listeDesGuildes`} />)
   }
 
-  var status = "Admin"
+  
 
   if(status == "Admin"){
     return( 
@@ -199,6 +211,43 @@ function GuildIfMember() {
       </React.Fragment>
       );
   }
+
+  if(status == "En attente"){
+    return( 
+      <React.Fragment>
+        {guild !== undefined ? (
+            <Card className={`${classes.root} ${classes.card}`} key={guild.id}>
+            <CardActionArea>
+              <CardMedia
+                className={classes.media}
+                image="https://via.placeholder.com/400/76e888/FFFFFF/?text=ImageGuilde.png"
+                title="Card Name"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                {guild.name}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                {guild.description}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+            <Typography gutterBottom variant="h5" component="h2">
+                vous êtes en attente dans cette guilde
+                </Typography>
+              <Button size="small" color="primary">
+                Learn More
+              </Button>
+            </CardActions>
+          </Card>
+          ) : (
+            <Typography>Chargement</Typography>
+          )}
+      </React.Fragment>
+    );
+  }
+
 
   return( 
     <React.Fragment>
