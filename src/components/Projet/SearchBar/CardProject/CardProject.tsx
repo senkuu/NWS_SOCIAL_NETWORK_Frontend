@@ -164,7 +164,7 @@ export default function CardProject() {
             <TextField id="input-with-icon-grid" label="Écrire un commentaire..." />
           </Grid>
           <IconButton aria-label="send">
-            <SendIcon className={classes.marginIcon} />
+            <SendIcon />
             </IconButton>
         </Grid>
       </div>
