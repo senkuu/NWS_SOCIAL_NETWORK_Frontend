@@ -10,16 +10,18 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MessageIcon from '@material-ui/icons/Message';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Box from '@material-ui/core/Box';
-import { grey500 } from 'material-ui/styles/colors';
+import Grid from '@material-ui/core/Grid';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
+import SendIcon from '@material-ui/icons/Send';
+import TextField from '@material-ui/core/TextField';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -28,6 +30,9 @@ const useStyles = makeStyles((theme: Theme) =>
       maxWidth: 345,
       marginLeft: "25px",
     },
+    margin: {
+        margin: theme.spacing(1),
+      },
     media: {
       height: 0,
       paddingTop: '56.25%', // 16:9
@@ -45,6 +50,11 @@ const useStyles = makeStyles((theme: Theme) =>
     orange: {
       color: theme.palette.getContrastText(deepOrange[500]),
       backgroundColor: deepOrange[500],
+    },
+    avatar: {
+        width: theme.spacing(3),
+        height: theme.spacing(3),
+        fontSize: '14px'
     }
   }),
 );
@@ -143,6 +153,21 @@ export default function CardProject() {
           </Typography>
         </CardContent>
       </Collapse>
+      <div className={classes.margin}>
+        <Grid container spacing={1} alignItems="flex-end">
+          <Grid item>
+          <Avatar aria-label="recipe"  className={classes.avatar}>
+            JD
+          </Avatar>
+          </Grid>
+          <Grid item>
+            <TextField id="input-with-icon-grid" label="Écrire un commentaire..." />
+          </Grid>
+          <IconButton aria-label="send">
+            <SendIcon className={classes.marginIcon} />
+            </IconButton>
+        </Grid>
+      </div>
     </Card>
     <Card className={classes.card}>
       <CardHeader
