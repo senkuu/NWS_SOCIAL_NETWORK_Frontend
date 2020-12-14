@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "components/NavBar";
 import SearchBar from "components/Projet/SearchBar"
+import CardProject from "components/Projet/SearchBar/CardProject"
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 
@@ -26,6 +27,7 @@ function Projet() {
     <React.Fragment>
       <NavBar />
       <SearchBar/>
+      <CardProject/>
     </React.Fragment>
   );
 }

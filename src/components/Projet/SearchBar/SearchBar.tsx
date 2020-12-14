@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function BasicTextFields() {
+export default function SearchBar() {
   const classes = useStyles();
 
   return (

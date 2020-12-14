@@ -56,7 +56,7 @@ function UserProfile(props: IUserProfileProps) {
         data-testid="userprofile-button"
       >
         <Typography className={classes.typo}>{props.username}</Typography>
-        <Avatar>MD</Avatar>
+        <Avatar>JD</Avatar>
       </Button>
       <Menu
         anchorEl={menuAnchorElement}
