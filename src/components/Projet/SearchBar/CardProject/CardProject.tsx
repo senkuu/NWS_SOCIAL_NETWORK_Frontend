@@ -19,12 +19,14 @@ import Box from '@material-ui/core/Box';
 import { grey500 } from 'material-ui/styles/colors';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { deepOrange, deepPurple } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     card: {
       maxWidth: 345,
+      marginLeft: "25px",
     },
     media: {
       height: 0,
@@ -40,6 +42,10 @@ const useStyles = makeStyles((theme: Theme) =>
     expandOpen: {
       transform: 'rotate(180deg)',
     },
+    orange: {
+      color: theme.palette.getContrastText(deepOrange[500]),
+      backgroundColor: deepOrange[500],
+    }
   }),
 );
 
@@ -96,7 +102,7 @@ export default function CardProject() {
       />
       <CardMedia
         className={classes.media}
-        image="https://www.fillmurray.com/640/360"
+        image="https://images.unsplash.com/photo-1514168757508-07ffe9ae125b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
         title="Paella dish"
       />
       <CardContent>
@@ -138,6 +144,43 @@ export default function CardProject() {
         </CardContent>
       </Collapse>
     </Card>
+    <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.orange}>
+            DF
+          </Avatar>
+        }
+        action={
+            <IconButton
+            aria-label="more"
+            aria-controls="long-menu"
+            aria-haspopup="true"
+            onClick={handleClick}
+          >
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title={name_project}
+        subheader={date_project_creation}
+      />
+      <CardMedia
+        className={classes.media}
+        image="https://images.unsplash.com/photo-1557754897-ca12c5049d83?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+        title="Paella dish"
+      />
+      <CardContent>
+        {description_project}
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="Ajouter aux favoris">
+          <FavoriteIcon color="action"/>
+        </IconButton>
+        <IconButton aria-label="Message">
+          <MessageIcon />
+        </IconButton>
+      </CardActions>
+    </Card>
     <Menu
         id="long-menu"
         anchorEl={anchorEl}
@@ -158,6 +201,7 @@ export default function CardProject() {
         ))}
       </Menu>
     </Box>
+    
     </div>
   );
 }
