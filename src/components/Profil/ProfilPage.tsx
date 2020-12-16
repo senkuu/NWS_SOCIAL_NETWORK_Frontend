@@ -10,6 +10,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 
+import { Link } from "react-router-dom";
 
 import { useUser } from "services/contexts/UserContext";
 import { isFunctionTypeNode } from 'typescript';
@@ -57,6 +58,10 @@ const useStyles = makeStyles((theme: Theme) =>
         color:  '#ff3333',
         fontSize: 12
       },
+    disconnected: {
+      marginTop: 10,
+      marginLeft: 20,
+    }
   }),
 );
 
@@ -78,7 +83,7 @@ function ProfilPage() {
                 <Grid item xs container direction="column" spacing={2}>
                 <Grid item xs>
                 <Typography gutterBottom variant="h5" style={{marginTop: 20, textAlign: "center", }}>
-                    Votre Profil
+                    Votre Profil :
                     </Typography>
                     <Typography gutterBottom variant="h5" style={{marginTop: 35}}>
                     John DOE
@@ -116,7 +121,10 @@ function ProfilPage() {
 
 
 return (
-   <Typography> test </Typography>
+  <div className={classes.disconnected}>
+   <Typography> Vous êtes bien deconnecter </Typography>
+   <Link to="/"> Retourner sur la page d'accueil </Link>
+   </div>
   );
 }
 
