@@ -41,23 +41,6 @@ function Home() {
   return (
     <React.Fragment>
       <NavBar />
-      <Typography variant="h1">Accueil</Typography>
-      {postsList.length > 0 ? (
-          postsList.map((posts) => <Typography key={posts.id}>
-          <List className={classes.root}>
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar>
-                  <ImageIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={posts.title} secondary={posts.text} />
-            </ListItem>
-          </List>
-        </Typography>)
-          ) : (
-            <Typography>Chargement</Typography>
-          )}
     </React.Fragment>
   );
 }

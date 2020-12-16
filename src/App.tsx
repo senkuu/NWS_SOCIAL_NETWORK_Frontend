@@ -1,5 +1,5 @@
 import Guilds from "components/Guilds/Guilds";
-import Guild from "components/Guilds/Guilds";
+
 import UserGuilds from "components/UserGuilds/UserGuilds";
 import React from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 
 // import Provider
 import { UserContextProvider } from "services/contexts/UserContext";
+import NewGuild from "components/NewGuild/NewGuild";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
   <UserContextProvider>
       <Router>
         <Home/>
+        <Route path="/NouvelleGuilde" exact component={NewGuild} />
         <Route path="/listeDesGuildes" exact component={listGuilds}/>
         <Route path="/guild/:id" exact component={Guilds}/>
         <Route path="/user/:id/guilds/" exact component={UserGuilds}/>

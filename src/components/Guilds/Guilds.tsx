@@ -25,6 +25,7 @@ interface TabPanelProps {
   index: any;
   value: any;
 }
+
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
@@ -87,7 +88,7 @@ function Guilds(){
     setValue(newValue);
   };
   const  {user}  = useContext(UserContext);
-  console.log(user)
+  
   let { id } : any = useParams();
   const [guild, setGuild] = useState<Guild>();
   const classes = useStyles();
@@ -97,7 +98,7 @@ function Guilds(){
       .catch((e) => console.error(e));
   }, []);
     
-  console.log(guild)
+  
 
   if (user) {
     return(
@@ -115,6 +116,8 @@ function Guilds(){
 return( 
   <React.Fragment>
   {guild !== undefined ? (
+
+    
   <Card className={`${classes.root} ${classes.card}`} key={guild.id}>
     <CardActionArea>
       <CardMedia

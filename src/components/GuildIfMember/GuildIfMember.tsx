@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import { Redirect, useParams } from "react-router-dom";
 import fetchGuild from "services/guilds/fetchGuild";
 import { Guild } from "types/guilds";
+import { GuildUsersList} from "types/GuildUsersList"
 import { UserInGuild } from "types/UserInGuild";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Card from '@material-ui/core/Card';
@@ -15,12 +16,14 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
+import ImageIcon from '@material-ui/icons/Image';
 
 
 // import contexts
 import { UserContext } from "services/contexts/UserContext";
-import { getUserGuildStatus, joinGuild } from "services/guilds/guilds";
-import { Button } from "@material-ui/core";
+import { getUserGuildStatus, joinGuild, getGuildUserList } from "services/guilds/guilds";
+import { Button, ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
+import { Avatar, List } from "@material-ui/core";
 
 
 
@@ -113,7 +116,18 @@ function GuildIfMember() {
       .catch((e) => console.error(e));
   }, []);
 
+  
+  const [guildUsersList, setGuildUsersList] = useState<GuildUsersList[]>([]);
+
+  useEffect(() => {
+    getGuildUserList(id)
+      .then((guildUsersList) => setGuildUsersList(guildUsersList))
+      .catch((e) => console.error(e));
+  }, []);
+
+  
   var status = guildStatus?.userRole;
+  status = "Admin";
 
   if(!user){
     return( <Redirect to={`/listeDesGuildes`} />)
@@ -121,7 +135,7 @@ function GuildIfMember() {
 
   
 
-  if(status == "Admin"){
+  if(status === "Admin"){
     return( 
       <React.Fragment>
         {guild !== undefined ? (
@@ -158,7 +172,28 @@ function GuildIfMember() {
               <h1>POST</h1>
             </TabPanel>
             <TabPanel value={value} index={2}>
-              <h1>GESTION ADMIN</h1>
+              {guildUsersList.length > 0 ? (guildUsersList.map((a) => 
+               <div>
+                 {console.log(a)}
+                 <List className={classes.root}>
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar>
+                        <ImageIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText primary= {a.user.name} secondary={a.role} />
+                   
+                  </ListItem>
+                </List>
+                 
+                
+               
+              </div> 
+                
+              )) : (
+                <Typography>Aucun Membre dans cette guilde</Typography>
+              )}
             </TabPanel>
           </div>
           ) : (
@@ -168,7 +203,7 @@ function GuildIfMember() {
     );
   }
 
-  if(status == "Membre"){
+  if(status === "Membre"){
     return( 
       <React.Fragment>
         {guild !== undefined ? (
@@ -212,7 +247,7 @@ function GuildIfMember() {
       );
   }
 
-  if(status == "En attente"){
+  if(status === "En attente"){
     return( 
       <React.Fragment>
         {guild !== undefined ? (

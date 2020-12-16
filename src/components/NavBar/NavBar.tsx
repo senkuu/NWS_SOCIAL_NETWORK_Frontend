@@ -52,7 +52,10 @@ function NavBar() {
               NWS
             </Link>
           </Typography>
-          <Link to="/listeDesGuildes" className={classes.btnNavbar}>
+        <Link to="/NouvelleGuilde" className={classes.btnNavbar}>
+          <Button color="inherit"> Créer une guilde</Button>
+        </Link>
+        <Link to="/listeDesGuildes" className={classes.btnNavbar}>
           <Button color="inherit"> Les Guildes</Button>
         </Link>
         <Link to={`/User/${user.id}/guilds`} className={classes.btnNavbar}>
