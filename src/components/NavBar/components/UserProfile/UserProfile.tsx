@@ -2,15 +2,12 @@ import React, { Profiler, useState } from "react";
 import { Link } from "react-router-dom";
 
 // import material-ui components
-import { makeStyles, createStyles, withStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import Badge from '@material-ui/core/Badge';
-import MailIcon from '@material-ui/icons/Mail';
-import IconButton from '@material-ui/core/IconButton';
 
 interface IUserProfileProps {
   username: string;
@@ -18,16 +15,7 @@ interface IUserProfileProps {
   disconnectUser: () => void;
 }
 
-const StyledBadge = withStyles((theme: Theme) =>
-  createStyles({
-    badge: {
-      right: -1,
-      top: 8,
-      border: `1px solid ${theme.palette.background.paper}`,
-      padding: '0 2px',
-    },
-  }),
-)(Badge);
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -105,11 +93,6 @@ function UserProfile(props: IUserProfileProps) {
           Profil
         </Link>
       </Menu>
-        <IconButton aria-label="cart">
-        <StyledBadge badgeContent={4} color="secondary">
-          <MailIcon />
-        </StyledBadge>
-        </IconButton>
     </React.Fragment>
   );
 }

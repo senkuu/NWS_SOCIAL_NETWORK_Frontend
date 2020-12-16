@@ -7,6 +7,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 // import material ui components
 import Typography from "@material-ui/core/Typography";
+import ProfilPage from "components/Profil";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,7 +27,7 @@ function Profil() {
   return (
     <React.Fragment>
       <NavBar />
-      <Typography> PROFIL </Typography>
+      <ProfilPage />
     </React.Fragment>
   );
 }
