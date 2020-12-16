@@ -5,8 +5,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "pages/Home";
 import Projet from "pages/Projet";
 import Profil from "pages/Profil";
-
-
+import Form from "pages/Projet/Formulaire";
 function Router() {
   return (
     <BrowserRouter>
@@ -19,6 +18,9 @@ function Router() {
         </Route>
         <Route exact path="/Profil">
           <Profil />
+        </Route>
+        <Route exact path="/Form">
+          <Form />
         </Route>
       </Switch>
     </BrowserRouter>
