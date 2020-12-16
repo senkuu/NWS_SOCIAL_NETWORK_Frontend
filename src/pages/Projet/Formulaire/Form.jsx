@@ -37,6 +37,7 @@ class MyInputBlock extends Component {
             <div>
           <p><input ref={this.setTextInputRef} type='text' placeholder='Nom du projet'  name={this.props.inputFullName} onChange={this.handleChange}/></p>
           <p><textarea placeholder='Votre projet' name={this.props.inputContentName}  onChange={this.handleChange}></textarea></p>
+          <p><input ref={this.setTextInputRef}  type='text' placeholder='Nombre de participants'  name={this.props.inputSlot} onChange={this.handleChange}/></p>
           </div>
       )
     }
@@ -48,7 +49,8 @@ class FormsAndInputs extends Component {
         this.state = {
             myFullName: '',
             myProject: '',
-            email: ''
+            email: '',
+            slot: ''
         }
         this.inputFullNameRef = React.createRef()
         this.inputEmailRef = React.createRef()
@@ -88,6 +90,7 @@ class FormsAndInputs extends Component {
   render () {
       const {myFullName} = this.state
       const {email} = this.state
+      const {slot} = this.state
     return (
         <React.Fragment>
         <NavBar/>
