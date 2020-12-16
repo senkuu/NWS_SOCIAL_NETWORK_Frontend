@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { Profiler, useState } from "react";
+import { Link } from "react-router-dom";
 
 // import material-ui components
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
@@ -10,6 +11,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 interface IUserProfileProps {
   username: string;
+  role: string,
   disconnectUser: () => void;
 }
 
@@ -26,6 +28,18 @@ const useStyles = makeStyles((theme: Theme) =>
     typo: {
       color: theme.palette.primary.contrastText,
       marginRight: 15,
+    },
+    typo2: {
+      color: theme.palette.primary.contrastText,
+      marginRight: 5,
+      fontSize: "8px",
+    },
+    test: {
+      display: "flex",
+      justifyContent: "center",
+      color: "#14141f",
+      fontSize: "17px",
+      textDecoration: "none",
     },
   })
 );
@@ -55,7 +69,9 @@ function UserProfile(props: IUserProfileProps) {
         }
         data-testid="userprofile-button"
       >
+        
         <Typography className={classes.typo}>{props.username}</Typography>
+        <Typography className={classes.typo2}>{props.role} </Typography>
         <Avatar>JD</Avatar>
       </Button>
       <Menu
@@ -70,6 +86,10 @@ function UserProfile(props: IUserProfileProps) {
         >
           Logout
         </MenuItem>
+       
+        <Link to="/Profil" className={classes.test}>
+          Profil
+        </Link>
       </Menu>
     </React.Fragment>
   );

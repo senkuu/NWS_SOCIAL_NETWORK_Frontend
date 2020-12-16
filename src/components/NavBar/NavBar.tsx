@@ -54,6 +54,7 @@ function NavBar() {
           </Typography>
           <UserProfile
             username={user.username}
+            role={user.role}
             disconnectUser={disconnectUser}
           />
         </Toolbar>
@@ -77,7 +78,7 @@ function NavBar() {
         </Typography>
         <Button
           color="inherit"
-          onClick={() => authenticateUser({ id: 42, username: "John Doe" })}
+          onClick={() => authenticateUser({ id: 42, username: "John Doe", role: "Moderateur"})}
           data-testid="login-button"
         >
           Login
