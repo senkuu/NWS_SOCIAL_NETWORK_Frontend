@@ -20,13 +20,16 @@ import ImageIcon from '@material-ui/icons/Image';
 
 
 // import contexts
-import { UserContext } from "services/contexts/UserContext";
-import { getUserGuildStatus, joinGuild, getGuildUserList } from "services/guilds/guilds";
-import { Button, ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
-import { Avatar, List } from "@material-ui/core";
-
-
-
+import {UserContext} from "services/contexts/UserContext";
+import {
+  getUserGuildStatus,
+  joinGuild,
+  getGuildUserList,
+  setUserGuildStatus,
+  deleteUserGuild
+} from "services/guilds/guilds";
+import {Button, ListItem, ListItemAvatar, ListItemText} from "@material-ui/core";
+import {Avatar, List} from "@material-ui/core";
 
 
 interface TabPanelProps {
@@ -34,8 +37,9 @@ interface TabPanelProps {
   index: any;
   value: any;
 }
+
 function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
+  const {children, value, index, ...other} = props;
 
   return (
     <div
@@ -63,10 +67,10 @@ function a11yProps(index: any) {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-  
+
     title: {
       textAlign:"center"
-    }, 
+    },
     root: {
       width: '100%',
       maxWidth: 360,
@@ -78,27 +82,32 @@ const useStyles = makeStyles((theme: Theme) =>
     media: {
       height: 140,
     },
-    card: {     
-      margin:'auto'
+    card: {
+      margin: 'auto'
     },
     tabs: {
       flexGrow: 1,
       backgroundColor: theme.palette.background.paper,
     },
-  
-   })
+    statusDisplay: {
+      minWidth: 160,
+    },
+    statusButton: {
+      display: 'flex',
+    }
+  })
 );
 
 function GuildIfMember() {
-  
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
-  const  {user}  = useContext(UserContext);
- 
-  let { id } : any = useParams();
+  const {user} = useContext(UserContext);
+
+  let {id}: any = useParams();
   const [guild, setGuild] = useState<Guild>();
   const classes = useStyles();
 
@@ -116,7 +125,7 @@ function GuildIfMember() {
       .catch((e) => console.error(e));
   }, []);
 
-  
+
   const [guildUsersList, setGuildUsersList] = useState<GuildUsersList[]>([]);
 
   useEffect(() => {
@@ -125,133 +134,150 @@ function GuildIfMember() {
       .catch((e) => console.error(e));
   }, []);
 
-  
+
   var status = guildStatus?.userRole;
   status = "Admin";
 
-  if(!user){
-    return( <Redirect to={`/listeDesGuildes`} />)
+  if (!user) {
+    return (<Redirect to={`/listeDesGuildes`}/>)
   }
 
-  
 
-  if(status === "Admin"){
-    return( 
+  if (status === "Admin") {
+    return (
       <React.Fragment>
         {guild !== undefined ? (
-        <div className={classes.tabs}>
-          <AppBar position="static">
-            <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-              <Tab label="Item One" {...a11yProps(0)} />
-              <Tab label="Item Two" {...a11yProps(1)} />
-              <Tab label="Item Three" {...a11yProps(2)} />
-            </Tabs>
-          </AppBar>
+          <div className={classes.tabs}>
+            <AppBar position="static">
+              <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+                <Tab label="Item One" {...a11yProps(0)} />
+                <Tab label="Item Two" {...a11yProps(1)} />
+                <Tab label="Item Three" {...a11yProps(2)} />
+              </Tabs>
+            </AppBar>
             <TabPanel value={value} index={0}>
-            <Card className={`${classes.root} ${classes.card}`} key={guild.id}>
-            <CardActionArea>
-              <CardMedia
-                className={classes.media}
-                image="https://via.placeholder.com/400/76e888/FFFFFF/?text=ImageGuilde.png"
-                title="Card Name"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                {guild.name}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                {guild.description}
-                </Typography>
-               </CardContent>
-            </CardActionArea>
-            <CardActions>
-              </CardActions>
-            </Card>
+              <Card className={`${classes.root} ${classes.card}`} key={guild.id}>
+                <CardActionArea>
+                  <CardMedia
+                    className={classes.media}
+                    image="https://via.placeholder.com/400/76e888/FFFFFF/?text=ImageGuilde.png"
+                    title="Card Name"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {guild.name}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                      {guild.description}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions>
+                </CardActions>
+              </Card>
             </TabPanel>
             <TabPanel value={value} index={1}>
               <h1>POST</h1>
             </TabPanel>
             <TabPanel value={value} index={2}>
-              {guildUsersList.length > 0 ? (guildUsersList.map((a) => 
-               <div>
-                 {console.log(a)}
-                 <List className={classes.root}>
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar>
-                        <ImageIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary= {a.user.name} secondary={a.role} />
-                   
-                  </ListItem>
-                </List>
-                 
-                
-               
-              </div> 
-                
+              {guildUsersList.length > 0 ? (guildUsersList.map((a) =>
+                <div>
+                  {console.log(a)}
+                  <List className={classes.root}>
+                    <ListItem>
+                      <ListItemAvatar>
+                        <Avatar>
+                          <ImageIcon/>
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText primary={a.user.name} secondary={a.role} className={classes.statusDisplay}/>
+                      {a.role === "En attente" ? (
+                        <div className={classes.statusButton}>
+                          <Button onClick={() => setUserGuildStatus(guild.id.toString(), a.user.id.toString())}
+                                  variant="contained"
+                                  size="small" color="primary" className={classes.margin}>
+                            Accepter
+                          </Button>
+                          <Button onClick={() => deleteUserGuild(guild.id.toString(), a.user.id.toString())}
+                                  variant="contained"
+                                  size="small" color="primary" className={classes.margin}>
+                            Refuser
+                          </Button>
+                        </div>
+
+                      ) : (
+                        <Button onClick={() => deleteUserGuild(guild.id.toString(), a.user.id.toString())}
+                                variant="contained"
+                                size="small" color="primary" className={classes.margin}>
+                          Supprimer
+                        </Button>
+                      )}
+                    </ListItem>
+                  </List>
+
+
+                </div>
               )) : (
                 <Typography>Aucun Membre dans cette guilde</Typography>
               )}
             </TabPanel>
           </div>
-          ) : (
-            <Typography>Chargement</Typography>
-          )}
+        ) : (
+          <Typography>Chargement</Typography>
+        )}
       </React.Fragment>
     );
   }
 
-  if(status === "Membre"){
-    return( 
+  if (status === "Membre") {
+    return (
       <React.Fragment>
         {guild !== undefined ? (
-        <div className={classes.tabs}>
+          <div className={classes.tabs}>
             <AppBar position="static">
               <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
                 <Tab label="Item One" {...a11yProps(0)} />
                 <Tab label="Item Two" {...a11yProps(1)} />
-                
+
               </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-            <Card className={`${classes.root} ${classes.card}`} key={guild.id}>
-            <CardActionArea>
-              <CardMedia
-                className={classes.media}
-                image="https://via.placeholder.com/400/76e888/FFFFFF/?text=ImageGuilde.png"
-                title="Card Name"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                {guild.name}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                {guild.description}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-            </CardActions>
-          </Card>
+              <Card className={`${classes.root} ${classes.card}`} key={guild.id}>
+                <CardActionArea>
+                  <CardMedia
+                    className={classes.media}
+                    image="https://via.placeholder.com/400/76e888/FFFFFF/?text=ImageGuilde.png"
+                    title="Card Name"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {guild.name}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                      {guild.description}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions>
+                </CardActions>
+              </Card>
             </TabPanel>
             <TabPanel value={value} index={1}>
-            <h1>POST</h1>
+              <h1>POST</h1>
             </TabPanel>
           </div>
-          ) : (
-            <Typography>Chargement</Typography>
-          )}
+        ) : (
+          <Typography>Chargement</Typography>
+        )}
       </React.Fragment>
-      );
+    );
   }
 
-  if(status === "En attente"){
-    return( 
+  if (status === "En attente") {
+    return (
       <React.Fragment>
         {guild !== undefined ? (
-            <Card className={`${classes.root} ${classes.card}`} key={guild.id}>
+          <Card className={`${classes.root} ${classes.card}`} key={guild.id}>
             <CardActionArea>
               <CardMedia
                 className={classes.media}
@@ -260,34 +286,34 @@ function GuildIfMember() {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                {guild.name}
+                  {guild.name}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                {guild.description}
+                  {guild.description}
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
-            <Typography gutterBottom variant="h5" component="h2">
+              <Typography gutterBottom variant="h5" component="h2">
                 vous êtes en attente dans cette guilde
-                </Typography>
+              </Typography>
               <Button size="small" color="primary">
                 Learn More
               </Button>
             </CardActions>
           </Card>
-          ) : (
-            <Typography>Chargement</Typography>
-          )}
+        ) : (
+          <Typography>Chargement</Typography>
+        )}
       </React.Fragment>
     );
   }
 
 
-  return( 
+  return (
     <React.Fragment>
       {guild !== undefined ? (
-          <Card className={`${classes.root} ${classes.card}`} key={guild.id}>
+        <Card className={`${classes.root} ${classes.card}`} key={guild.id}>
           <CardActionArea>
             <CardMedia
               className={classes.media}
@@ -296,29 +322,31 @@ function GuildIfMember() {
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
-              {guild.name}
+                {guild.name}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-              {guild.description}
+                {guild.description}
               </Typography>
             </CardContent>
           </CardActionArea>
           <CardActions>
-        {user !== null ? (
-          <Button onClick={() => joinGuild(guild.id.toString(), user.id.toString())} variant="contained" size="small" color="primary" className={classes.margin}>
-                  Rejoindre
-          </Button>) : (
-            <div></div>
-          )}
+            {user !== null ? (
+              <Button onClick={() => joinGuild(guild.id.toString(), user.id.toString())} variant="contained"
+                      size="small" color="primary" className={classes.margin}>
+                Rejoindre
+              </Button>) : (
+              <div></div>
+            )}
             <Button size="small" color="primary">
               Learn More
             </Button>
           </CardActions>
         </Card>
-        ) : (
-          <Typography>Chargement</Typography>
-        )}
+      ) : (
+        <Typography>Chargement</Typography>
+      )}
     </React.Fragment>
   );
 }
+
 export default GuildIfMember;
